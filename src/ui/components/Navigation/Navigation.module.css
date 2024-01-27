@@ -1,0 +1,117 @@
+.navigation {
+  height: 96px;
+  background: var(--COLOR_GREY_1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: inherit;
+}
+
+.links {
+  display: none;
+  align-items: center;
+  gap: 32px;
+}
+@media (min-width: 768px) {
+  .links {
+    display: flex;
+  }
+}
+
+.link {
+  text-decoration: none;
+  font-size: clamp(16px, 5vw, 18px);
+  color: var(--COLOR_WHITE);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.link:not(:last-child)::before {
+  position: absolute;
+  content: "";
+  background-color: var(--COLOR_WHITE);
+  width: 1.5px;
+  height: 100%;
+  top: 0;
+  right: -20%;
+}
+
+.link:hover {
+  color: var(--COLOR_YELLOW);
+}
+
+.basket {
+  transition: fill 0.3s ease;
+}
+.basket:hover {
+  fill: var(--COLOR_YELLOW);
+}
+
+/* BURGER */
+
+.burger {
+  --POSITION: translateX(-110%);
+  display: contents;
+}
+
+@media (max-width: 768px) {
+  .burger:focus-within {
+    --POSITION: translateX(-26px);
+  }
+}
+
+.burger:has(.burgerLink:focus) {
+  --POSITION: translateX(-110%);
+}
+
+.burgerLogo {
+}
+
+.burgerButton {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  transform: translateY(3px);
+}
+.burgerButton > svg {
+  stroke: var(--COLOR_WHITE);
+}
+
+.burgerMenu {
+  transition: transform 0.2s ease-in-out;
+  width: 320px;
+  max-width: 90vw;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  transform: var(--POSITION);
+  background-color: var(--COLOR_GREY_1);
+  padding: 96px 24px 32px;
+}
+
+.burgerLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.burgerLink {
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--COLOR_WHITE);
+}
+
+@media (min-width: 768px) {
+  .burgerMenu {
+    display: none;
+  }
+  .burgerButton {
+    display: none;
+  }
+}

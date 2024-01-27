@@ -1,0 +1,8 @@
+.container {
+  padding-left: var(--PADDING_MOBILE);
+  padding-right: var(--PADDING_MOBILE);
+  max-width: var(--SCREEN_HD);
+  width: 100%;
+  margin: 0 auto;
+  height: inherit;
+}

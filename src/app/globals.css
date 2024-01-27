@@ -1,9 +1,24 @@
+:root {
+  /* PADDING */
+  --PADDING_MOBILE: 24px;
+  /* SCREEN */
+  --SCREEN_TABLET: 768px;
+  --SCREEN_DESKTOP: 1024px;
+  --SCREEN_HD: 1366px;
+  /* COLORS */
+  --COLOR_WHITE: white;
+  --COLOR_BLACK: black;
+  --COLOR_GREY_1: #444;
+  --COLOR_YELLOW: #ffd700;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 html {
