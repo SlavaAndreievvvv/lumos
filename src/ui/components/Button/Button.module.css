@@ -1,0 +1,50 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.fluid {
+  width: 100%;
+}
+
+/* VARIANTS */
+
+.primary {
+  height: 40px;
+  padding: 24px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.primary:hover {
+  opacity: 0.7;
+}
+
+.primary:active {
+  scale: 0.9;
+}
+
+.primary:focus-visible {
+  box-shadow: 0 0 0 2px var(--COLOR_BLACK);
+}
+
+/* COLORS */
+
+.dark {
+  color: var(--COLOR_WHITE);
+  background-color: var(--COLOR_GREY_2);
+}
+
+.light {
+  color: var(--COLOR_WHITE);
+  background-color: var(--COLOR_GREY_3);
+}

@@ -9,7 +9,12 @@
   --COLOR_WHITE: white;
   --COLOR_BLACK: black;
   --COLOR_GREY_1: #444;
+  --COLOR_GREY_2: #2b2b2b;
+  --COLOR_GREY_3: #666;
+  --COLOR_GREY_4: #333;
   --COLOR_YELLOW: #ffd700;
+  /* NAVIGATION HEIGHT */
+  --NAVIGATION_HEIGHT: 96px;
 }
 
 *,
@@ -18,7 +23,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
 }
 
 html {
@@ -48,6 +53,7 @@ ol[role="list"] {
 body {
   min-height: 100vh;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 h1,

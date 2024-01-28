@@ -1,0 +1,100 @@
+.section {
+  position: relative;
+  z-index: 2;
+  background: var(--COLOR_GREY_1);
+  padding-top: 200px;
+  padding-bottom: 40px;
+  z-index: 2;
+}
+@media (min-width: 1024px) {
+  .section {
+    padding-top: 260px;
+    padding-bottom: 80px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+}
+@media (min-width: 1024px) {
+  .wrapper {
+    flex-direction: row;
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  background-color: var(--COLOR_GREY_4);
+  border-radius: 4px;
+  max-width: 280px;
+  min-height: 300px;
+  width: 100%;
+  -webkit-transition: all 0.7s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  -webkit-transition: all 0.7s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  -ms-transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+
+.card:hover .bootleImage {
+  transform: scale(1.1);
+  -webkit-transition: all 0.7s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  -ms-transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+  transform: translateY(-10%);
+}
+
+.bootleImage {
+  position: absolute;
+  width: 115%;
+  height: 150%;
+  transform: translateY(-10%);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px 24px;
+}
+
+.name {
+  font-size: 24px;
+  color: var(--COLOR_WHITE);
+}
+
+.price {
+  font-size: 20px;
+  color: var(--COLOR_WHITE);
+}
+
+.backgroundLogo {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+}

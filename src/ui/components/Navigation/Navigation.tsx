@@ -12,7 +12,7 @@ const navLinks = [
   },
   {
     name: "Наша ідея",
-    link: `${Routes.HOME}#idea`,
+    link: `${Routes.ABOUT_US}`,
   },
   {
     name: "Контакти",

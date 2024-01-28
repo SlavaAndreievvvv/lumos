@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { PT_Sans } from "next/font/google";
 import { Navigation } from "@/ui/components";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const cinzel = PT_Sans({ weight: ["400", "700"], subsets: ["cyrillic"] });
 
 export const metadata: Metadata = {
   title: "Lumos",
@@ -43,7 +43,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#2b5797" />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className={inter.className}>
+      <body className={cinzel.className}>
         <Navigation />
         <main>{children}</main>
       </body>
