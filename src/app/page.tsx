@@ -1,7 +1,5 @@
 import { HomePage } from "@/ui/pages";
 
-export const Home = () => {
+export default function Home() {
   return <HomePage />;
-};
-
-export default Home;
+}

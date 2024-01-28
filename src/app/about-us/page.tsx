@@ -1,7 +1,5 @@
 import { AboutUsPage } from "@/ui/pages";
 
-export const AboutUs = () => {
+export default function AboutUs() {
   return <AboutUsPage />;
-};
-
-export default AboutUs;
+}
