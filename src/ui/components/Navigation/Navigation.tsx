@@ -22,19 +22,14 @@ const navLinks = [
 
 const NavigationBurger = () => (
   <div className={styles.burger}>
-    <button className={styles.burgerButton}>
-      <Icon name="burger" size={32} />
+    <button aria-label="burger" className={styles.burgerButton}>
+      <Icon name="burger" size={32} color="yellow" />
     </button>
     <div className={styles.burgerMenu} tabIndex={1}>
       <Logo size={50} className={styles.burgerLogo} />
       <nav className={styles.burgerLinks}>
         {navLinks.map(({ name, link }) => (
-          <Link
-            tabIndex={0}
-            key={name}
-            href={link}
-            className={styles.burgerLink}
-          >
+          <Link key={name} href={link} className={styles.burgerLink}>
             {name}
           </Link>
         ))}
