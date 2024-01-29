@@ -63,7 +63,7 @@
 
 .burger {
   --POSITION: translateX(-110%);
-  display: contents;
+  /* display: contents; */
 }
 
 @media (max-width: 768px) {
