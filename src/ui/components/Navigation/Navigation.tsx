@@ -1,5 +1,7 @@
+"use client";
+
 import clsx from "clsx";
-import { HTMLProps, MouseEvent, MouseEventHandler } from "react";
+import { HTMLProps, useEffect, useRef } from "react";
 import { Container, Icon, Logo } from "@/ui/components";
 import styles from "./Navigation.module.css";
 import Link from "next/link";
@@ -20,27 +22,55 @@ const navLinks = [
   },
 ];
 
-const NavigationBurger = () => (
-  <div className={styles.burger}>
-    <button
-      onClick={(e: MouseEvent<HTMLButtonElement>) => e.preventDefault()}
-      aria-label="burger"
-      className={styles.burgerButton}
-    >
-      <Icon name="burger" size={32} color="white" />
-    </button>
-    <div className={styles.burgerMenu} tabIndex={1}>
-      <Logo size={50} className={styles.burgerLogo} />
-      <nav className={styles.burgerLinks}>
-        {navLinks.map(({ name, link }) => (
-          <Link key={name} href={link} className={styles.burgerLink}>
-            {name}
-          </Link>
-        ))}
-      </nav>
+const NavigationBurger = () => {
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    const handleButtonClick = () => {
+      const button = buttonRef.current;
+
+      if (button) {
+        button.focus();
+      }
+    };
+
+    const button = buttonRef.current;
+    if (button) {
+      button.addEventListener("click", handleButtonClick);
+    }
+    return () => {
+      if (button) {
+        button.removeEventListener("click", handleButtonClick);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("buttonRef", buttonRef.current);
+  }, []);
+
+  return (
+    <div className={styles.burger}>
+      <button
+        ref={buttonRef}
+        aria-label="burger"
+        className={styles.burgerButton}
+      >
+        <Icon name="burger" size={32} color="white" />
+      </button>
+      <div className={styles.burgerMenu} tabIndex={1}>
+        <Logo size={50} className={styles.burgerLogo} />
+        <nav className={styles.burgerLinks}>
+          {navLinks.map(({ name, link }) => (
+            <Link key={name} href={link} className={styles.burgerLink}>
+              {name}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export interface NavigationProps extends HTMLProps<HTMLDivElement> {}
 
