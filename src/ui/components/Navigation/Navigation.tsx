@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { HTMLProps } from "react";
+import { HTMLProps, MouseEvent, MouseEventHandler } from "react";
 import { Container, Icon, Logo } from "@/ui/components";
 import styles from "./Navigation.module.css";
 import Link from "next/link";
@@ -22,7 +22,11 @@ const navLinks = [
 
 const NavigationBurger = () => (
   <div className={styles.burger}>
-    <button aria-label="burger" className={styles.burgerButton}>
+    <button
+      onClick={(e: MouseEvent<HTMLButtonElement>) => e.preventDefault()}
+      aria-label="burger"
+      className={styles.burgerButton}
+    >
       <Icon name="burger" size={32} color="yellow" />
     </button>
     <div className={styles.burgerMenu} tabIndex={1}>

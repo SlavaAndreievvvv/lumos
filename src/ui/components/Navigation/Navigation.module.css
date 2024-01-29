@@ -63,7 +63,7 @@
 
 .burger {
   --POSITION: translateX(-110%);
-  /* display: contents; */
+  display: contents;
 }
 
 @media (max-width: 768px) {
@@ -86,9 +86,6 @@
   cursor: pointer;
   background-color: transparent;
   transform: translateY(3px);
-  position: relative;
-  z-index: 100;
-  pointer-events: all;
 }
 .burgerButton > svg {
   stroke: var(--COLOR_WHITE);
