@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { HTMLProps, useEffect, useRef } from "react";
+import { HTMLProps, useRef } from "react";
 import { Container, Icon, Logo } from "@/ui/components";
 import styles from "./Navigation.module.css";
 import Link from "next/link";
@@ -25,34 +25,35 @@ const navLinks = [
 const NavigationBurger = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-  useEffect(() => {
-    const handleButtonClick = () => {
-      const button = buttonRef.current;
+  // useEffect(() => {
+  //   const handleButtonClick = () => {
+  //     const button = buttonRef.current;
 
-      if (button) {
-        button.focus();
-      }
-    };
+  //     if (button) {
+  //       button.focus();
+  //     }
+  //   };
 
-    const button = buttonRef.current;
-    if (button) {
-      button.addEventListener("click", handleButtonClick);
-    }
-    return () => {
-      if (button) {
-        button.removeEventListener("click", handleButtonClick);
-      }
-    };
-  }, []);
+  //   const button = buttonRef.current;
+  //   if (button) {
+  //     button.addEventListener("click", handleButtonClick);
+  //   }
+  //   return () => {
+  //     if (button) {
+  //       button.removeEventListener("click", handleButtonClick);
+  //     }
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    console.log("buttonRef", buttonRef.current);
-  }, []);
+  // useEffect(() => {
+  //   console.log("buttonRef", buttonRef.current);
+  // }, []);
 
   return (
     <div className={styles.burger}>
       <button
-        ref={buttonRef}
+        type="button"
+        name="button"
         aria-label="burger"
         className={styles.burgerButton}
       >
