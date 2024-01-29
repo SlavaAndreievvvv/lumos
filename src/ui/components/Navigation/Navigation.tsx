@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { HTMLAttributes, useRef } from "react";
+import { HTMLAttributes, useEffect, useRef } from "react";
 import { Container, Icon, Logo } from "@/ui/components";
 import Link from "next/link";
 import { Routes } from "@/constants";
@@ -30,6 +30,7 @@ const NavigationBurger = () => {
   return (
     <div className={styles.burger}>
       <button
+        ref={buttonRef}
         type="button"
         name="button"
         aria-label="burger"
