@@ -87,11 +87,13 @@
   background-color: transparent;
   transform: translateY(3px);
 }
+
 .burgerButton > svg {
   stroke: var(--COLOR_WHITE);
 }
-.burgerButton:focus {
-  box-shadow: 0 0 0 3px yellow;
+
+.burgerButton:focus-visible {
+  box-shadow: 0 0 0 3px var(--COLOR_WHITE);
 }
 
 .burgerMenu {

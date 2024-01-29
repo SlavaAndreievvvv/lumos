@@ -1,11 +1,12 @@
 "use client";
 
 import clsx from "clsx";
-import { HTMLProps, useRef } from "react";
+import { HTMLAttributes, useRef } from "react";
 import { Container, Icon, Logo } from "@/ui/components";
-import styles from "./Navigation.module.css";
 import Link from "next/link";
 import { Routes } from "@/constants";
+import { useCustomFocus, useScrollToAnchor } from "@/utils/hooks";
+import styles from "./Navigation.module.css";
 
 const navLinks = [
   {
@@ -18,36 +19,13 @@ const navLinks = [
   },
   {
     name: "Контакти",
-    link: `${Routes.HOME}#contacts`,
+    link: `#contacts`,
   },
 ];
 
 const NavigationBurger = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-
-  // useEffect(() => {
-  //   const handleButtonClick = () => {
-  //     const button = buttonRef.current;
-
-  //     if (button) {
-  //       button.focus();
-  //     }
-  //   };
-
-  //   const button = buttonRef.current;
-  //   if (button) {
-  //     button.addEventListener("click", handleButtonClick);
-  //   }
-  //   return () => {
-  //     if (button) {
-  //       button.removeEventListener("click", handleButtonClick);
-  //     }
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log("buttonRef", buttonRef.current);
-  // }, []);
+  useCustomFocus(buttonRef);
 
   return (
     <div className={styles.burger}>
@@ -73,9 +51,11 @@ const NavigationBurger = () => {
   );
 };
 
-export interface NavigationProps extends HTMLProps<HTMLDivElement> {}
+export interface NavigationProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const Navigation = ({ className }: NavigationProps) => {
+  useScrollToAnchor();
+
   return (
     <header className={clsx(styles.navigation, className)}>
       <Container>
