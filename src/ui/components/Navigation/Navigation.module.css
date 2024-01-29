@@ -86,6 +86,9 @@
   cursor: pointer;
   background-color: transparent;
   transform: translateY(3px);
+  position: relative;
+  z-index: 100;
+  pointer-events: all;
 }
 .burgerButton > svg {
   stroke: var(--COLOR_WHITE);
