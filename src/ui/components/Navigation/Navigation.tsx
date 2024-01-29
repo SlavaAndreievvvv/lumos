@@ -27,7 +27,7 @@ const NavigationBurger = () => (
       aria-label="burger"
       className={styles.burgerButton}
     >
-      <Icon name="burger" size={32} color="yellow" />
+      <Icon name="burger" size={32} color="white" />
     </button>
     <div className={styles.burgerMenu} tabIndex={1}>
       <Logo size={50} className={styles.burgerLogo} />
