@@ -25,7 +25,8 @@ const navLinks = [
 
 const NavigationBurger = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  useCustomFocus(buttonRef);
+  const linkRef = useRef<HTMLAnchorElement | null>(null);
+  useCustomFocus([buttonRef]);
 
   return (
     <div className={styles.burger}>
@@ -42,7 +43,12 @@ const NavigationBurger = () => {
         <Logo size={50} className={styles.burgerLogo} />
         <nav className={styles.burgerLinks}>
           {navLinks.map(({ name, link }) => (
-            <Link key={name} href={link} className={styles.burgerLink}>
+            <Link
+              ref={linkRef}
+              key={name}
+              href={link}
+              className={styles.burgerLink}
+            >
               {name}
             </Link>
           ))}

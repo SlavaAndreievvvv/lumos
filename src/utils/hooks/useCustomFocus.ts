@@ -1,27 +1,28 @@
 import { RefObject, useEffect } from "react";
 
 export const useCustomFocus = (
-  ref: RefObject<HTMLElement | null>,
+  refs: RefObject<HTMLElement | null>[],
   event: string = "click"
 ) => {
   useEffect(() => {
     const handleButtonClick = () => {
-      const button = ref.current;
-
-      if (button) {
-        button.focus();
+      if (Array.isArray(refs)) {
+        refs.map((ref) => ref?.current?.focus());
       }
     };
 
-    const button = ref.current;
-    if (button) {
-      button.addEventListener(event, handleButtonClick);
+    if (Array.isArray(refs)) {
+      refs.map((ref) =>
+        ref?.current?.addEventListener(event, handleButtonClick)
+      );
     }
 
     return () => {
-      if (button) {
-        button.removeEventListener(event, handleButtonClick);
+      if (Array.isArray(refs)) {
+        refs.map((ref) =>
+          ref?.current?.removeEventListener(event, handleButtonClick)
+        );
       }
     };
-  }, [ref, event]);
+  }, [refs, event]);
 };
