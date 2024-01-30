@@ -26,7 +26,7 @@ const navLinks = [
 const NavigationBurger = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const linkRef = useRef<HTMLAnchorElement | null>(null);
-  useCustomFocus([buttonRef]);
+  useCustomFocus([buttonRef, linkRef]);
 
   return (
     <div className={styles.burger}>
