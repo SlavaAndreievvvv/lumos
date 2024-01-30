@@ -61,19 +61,14 @@
 
 /* BURGER */
 
-.burger {
+.burgerMenu {
   --POSITION: translateX(-110%);
-  display: contents;
 }
 
 @media (max-width: 768px) {
-  .burger:focus-within {
+  .isOpenBurgerMenu.burgerMenu {
     --POSITION: translateX(-26px);
   }
-}
-
-.burger:has(.burgerLink:focus) {
-  --POSITION: translateX(-110%);
 }
 
 .burgerLogo {
@@ -113,6 +108,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+}
+.burgerLinks li {
+  list-style: none;
 }
 
 .burgerLink {

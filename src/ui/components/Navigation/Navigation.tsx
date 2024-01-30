@@ -5,7 +5,8 @@ import { HTMLAttributes, useEffect, useRef } from "react";
 import { Container, Icon, Logo } from "@/ui/components";
 import Link from "next/link";
 import { Routes } from "@/constants";
-import { useCustomFocus, useScrollToAnchor } from "@/utils/hooks";
+import { useScrollToAnchor } from "@/utils/hooks";
+import { useBoolean, useOnClickOutside } from "usehooks-ts";
 import styles from "./Navigation.module.css";
 
 const navLinks = [
@@ -24,37 +25,37 @@ const navLinks = [
 ];
 
 const NavigationBurger = () => {
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const linkRef = useRef<HTMLAnchorElement | null>(null);
-  useCustomFocus([buttonRef, linkRef]);
+  const isOpenBurgerMenu = useBoolean();
+  const ref = useRef<HTMLDivElement | null>(null);
+  useOnClickOutside(ref, () => isOpenBurgerMenu.setFalse());
 
   return (
-    <div className={styles.burger}>
+    <>
       <button
-        ref={buttonRef}
-        type="button"
-        name="button"
+        onClick={() => isOpenBurgerMenu.setTrue()}
         aria-label="burger"
         className={styles.burgerButton}
       >
         <Icon name="burger" size={32} color="white" />
       </button>
-      <div className={styles.burgerMenu} tabIndex={1}>
+      <div
+        ref={ref}
+        className={clsx(styles.burgerMenu, {
+          [styles.isOpenBurgerMenu]: isOpenBurgerMenu.value,
+        })}
+      >
         <Logo size={50} className={styles.burgerLogo} />
         <nav className={styles.burgerLinks}>
           {navLinks.map(({ name, link }) => (
-            <Link
-              ref={linkRef}
-              key={name}
-              href={link}
-              className={styles.burgerLink}
-            >
-              {name}
-            </Link>
+            <li key={name} onClick={() => isOpenBurgerMenu.setFalse()}>
+              <Link href={link} className={styles.burgerLink}>
+                {name}
+              </Link>
+            </li>
           ))}
         </nav>
       </div>
-    </div>
+    </>
   );
 };
 
