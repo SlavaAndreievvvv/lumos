@@ -3,13 +3,16 @@
 import clsx from "clsx";
 import { HTMLProps } from "react";
 import { Button, Container } from "@/ui";
-import ReactPlayer from "react-player";
-import video from "@/public/videos/hero.mp4";
 import { useRouter } from "next/navigation";
 import { Routes } from "@/constants";
 import RoundImage from "@/images/circle.png";
-import styles from "./HomePageHero.module.css";
 import Image from "next/image";
+import BlueBottleImage from "@/images/blue-bottle.png";
+import RedBottleImage from "@/images/red-bottle.png";
+import StormImage from "@/images/storm.png";
+import FireImage from "@/images/fire.png";
+
+import styles from "./HomePageHero.module.css";
 
 const icons = [
   {
@@ -39,16 +42,43 @@ export const HomePageHero = ({ className }: HomePageHeroProps) => {
     <section className={clsx(styles.section, className)}>
       <Container>
         <div className={styles.wrapper}>
-          <div className={styles.video}>
-            <ReactPlayer
-              playsinline
-              playing
-              url={video}
-              loop
-              muted
-              width="100%"
-              height="100%"
-            />
+          <div className={styles.images}>
+            <div className={styles.imageBox}>
+              <Image
+                src={BlueBottleImage}
+                alt="blue bottle image"
+                fill
+                unoptimized
+                quality={100}
+              />
+            </div>
+            <div className={styles.imageBox}>
+              <Image
+                src={RedBottleImage}
+                alt="red bottle image"
+                fill
+                unoptimized
+                quality={100}
+              />
+            </div>
+            <div className={styles.imageBox}>
+              <Image
+                src={StormImage}
+                alt="storm image"
+                fill
+                unoptimized
+                quality={100}
+              />
+            </div>
+            <div className={styles.imageBox}>
+              <Image
+                src={FireImage}
+                alt="fire image"
+                fill
+                unoptimized
+                quality={100}
+              />
+            </div>
           </div>
           <div className={styles.content}>
             <h1 className={styles.title}>
