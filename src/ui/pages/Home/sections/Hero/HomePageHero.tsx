@@ -35,7 +35,7 @@ export const HomePageHero = ({ className }: HomePageHeroProps) => {
   const router = useRouter();
 
   const handleAnchor = () => {
-    router.push(`${Routes.HOME}#order`);
+    router.push(`#order`);
   };
 
   return (
