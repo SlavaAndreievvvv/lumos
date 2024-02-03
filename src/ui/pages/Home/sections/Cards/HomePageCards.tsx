@@ -7,6 +7,8 @@ import BackgroundImage from "@/images/logo.png";
 import Image from "next/image";
 import RoundImage from "@/images/circle.png";
 import styles from "./HomePageCards.module.css";
+import Link from "next/link";
+import { Routes } from "@/constants";
 
 const icons = [
   {
@@ -23,10 +25,16 @@ const icons = [
   },
 ];
 
-export interface HomePageCardProps extends HTMLProps<HTMLDivElement> {
+export interface ProductProps {
   title: string;
   price: string;
   image: string;
+  link: string;
+  description?: string;
+}
+
+export interface HomePageCardProps extends ProductProps {
+  className?: string;
 }
 
 const HomePageCard = ({
@@ -34,9 +42,13 @@ const HomePageCard = ({
   title,
   price,
   image,
+  link,
 }: HomePageCardProps) => {
   return (
-    <div className={clsx(styles.card, className)}>
+    <Link
+      href={`${Routes.PRODUCT}/${link}`}
+      className={clsx(styles.card, className)}
+    >
       <div className={styles.bootleImage}>
         <Image src={image} alt="blue bootle" fill unoptimized quality={100} />
       </div>
@@ -44,7 +56,7 @@ const HomePageCard = ({
         <h3 className={styles.name}>{title}</h3>
         <p className={styles.price}>{price}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -66,6 +78,7 @@ export const HomePageCards = ({
               title={card.title}
               price={card.price}
               image={card.image}
+              link={card.link}
             />
           ))}
         </div>

@@ -11,6 +11,7 @@ import BlueBottleImage from "@/images/blue-bottle.png";
 import RedBottleImage from "@/images/red-bottle.png";
 import StormImage from "@/images/storm.png";
 import FireImage from "@/images/fire.png";
+import { useScrollToAnchor } from "@/utils/hooks";
 
 import styles from "./HomePageHero.module.css";
 
@@ -33,9 +34,10 @@ export interface HomePageHeroProps extends HTMLProps<HTMLDivElement> {}
 
 export const HomePageHero = ({ className }: HomePageHeroProps) => {
   const router = useRouter();
+  useScrollToAnchor();
 
   const handleAnchor = () => {
-    router.push(`#order`);
+    router.push(`${Routes.HOME}#order`);
   };
 
   return (
