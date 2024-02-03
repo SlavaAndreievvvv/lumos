@@ -33,10 +33,10 @@ const icons = [
 export interface HomePageHeroProps extends HTMLProps<HTMLDivElement> {}
 
 export const HomePageHero = ({ className }: HomePageHeroProps) => {
-  const router = useRouter();
   useScrollToAnchor();
-
-  const handleAnchor = () => {
+  const router = useRouter();
+  const handleAnchor = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     router.push(`${Routes.HOME}#order`);
   };
 
