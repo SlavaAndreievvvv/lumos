@@ -5,6 +5,7 @@
   width: fit-content;
   outline: none;
   border: none;
+  text-decoration: none;
   cursor: pointer;
   background-color: transparent;
   transition: all 0.3s ease;

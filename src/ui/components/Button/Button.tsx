@@ -1,33 +1,70 @@
 import clsx from "clsx";
-import { ButtonHTMLAttributes, HTMLProps } from "react";
+import { ButtonHTMLAttributes, HTMLProps, ReactNode, forwardRef } from "react";
 import styles from "./Button.module.css";
+import Link from "next/link";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonDefaultProps {
+  className?: string;
+  children: ReactNode;
   variant?: "primary";
   color?: "light" | "dark";
   fluid?: boolean;
+  ariaLabel?: string;
 }
 
-export const Button = ({
-  className,
-  children,
-  variant = "primary",
-  color = "dark",
-  fluid = false,
-  ...props
-}: ButtonProps) => {
-  return (
-    <button
-      {...props}
-      className={clsx(
-        styles.button,
-        styles[variant],
-        styles[color],
-        { [styles.fluid]: fluid },
-        className
-      )}
-    >
-      {children}
-    </button>
-  );
-};
+interface ButtonButtonProps {
+  onClick: (e: MouseEvent) => void;
+  link?: undefined;
+}
+
+interface ButtonLinkProps {
+  onClick?: undefined;
+  link: string;
+}
+
+export type ButtonProps = ButtonDefaultProps &
+  (ButtonButtonProps | ButtonLinkProps);
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    {
+      className,
+      children,
+      variant = "primary",
+      color = "dark",
+      fluid,
+      link,
+      onClick,
+      ariaLabel,
+      ...props
+    },
+    ref
+  ) {
+    const cn = clsx(
+      styles.button,
+      styles[variant],
+      styles[color],
+      { [styles.fluid]: fluid },
+      className
+    );
+
+    if (link) {
+      return (
+        <Link href={link} aria-label={ariaLabel} className={cn}>
+          {children}
+        </Link>
+      );
+    }
+    return (
+      <button
+        ref={ref}
+        aria-label={ariaLabel}
+        className={cn}
+        {...props}
+        onClick={() => onClick}
+      >
+        {children}
+      </button>
+    );
+  }
+);

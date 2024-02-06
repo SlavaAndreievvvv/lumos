@@ -3,8 +3,6 @@
 import clsx from "clsx";
 import { HTMLProps } from "react";
 import { Button, Container } from "@/ui";
-import { useRouter } from "next/navigation";
-import { Routes } from "@/constants";
 import RoundImage from "@/images/circle.png";
 import Image from "next/image";
 import BlueBottleImage from "@/images/blue-bottle.png";
@@ -12,6 +10,7 @@ import RedBottleImage from "@/images/red-bottle.png";
 import StormImage from "@/images/storm.png";
 import FireImage from "@/images/fire.png";
 import { useScrollToAnchor } from "@/utils/hooks";
+import { Routes } from "@/constants";
 
 import styles from "./HomePageHero.module.css";
 
@@ -34,11 +33,6 @@ export interface HomePageHeroProps extends HTMLProps<HTMLDivElement> {}
 
 export const HomePageHero = ({ className }: HomePageHeroProps) => {
   useScrollToAnchor();
-  const router = useRouter();
-  const handleAnchor = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    router.push(`${Routes.HOME}#order`);
-  };
 
   return (
     <section className={clsx(styles.section, className)}>
@@ -91,7 +85,7 @@ export const HomePageHero = ({ className }: HomePageHeroProps) => {
                 "«Полум’я вулкану» та «Океанічний смерч» - це не просто декор, а елегантні символи стихійної краси.\n Зберігайте їх як декоративний акцент у вашому просторі, надаючи йому особливий шарм. Приєднуйтеся до нас у творенні неповторних інтер’єрних історій."
               }
             </p>
-            <Button className={styles.button} onClick={handleAnchor}>
+            <Button className={styles.button} link={`${Routes.HOME}#order`}>
               Перейти до замовлення
             </Button>
           </div>
