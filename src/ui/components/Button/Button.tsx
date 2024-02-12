@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { ButtonHTMLAttributes, HTMLProps, ReactNode, forwardRef } from "react";
+import { ReactNode, forwardRef } from "react";
 import styles from "./Button.module.css";
 import Link from "next/link";
 
@@ -13,7 +13,7 @@ interface ButtonDefaultProps {
 }
 
 interface ButtonButtonProps {
-  onClick: (e: MouseEvent) => void;
+  onClick: () => void;
   link?: undefined;
 }
 
@@ -61,7 +61,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         aria-label={ariaLabel}
         className={cn}
         {...props}
-        onClick={() => onClick}
+        onClick={onClick}
       >
         {children}
       </button>

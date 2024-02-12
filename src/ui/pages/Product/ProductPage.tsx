@@ -3,15 +3,20 @@
 import { Button, Container } from "@/ui";
 import Image from "next/image";
 import { useProducts } from "@/store";
-import styles from "./ProductPage.module.css";
 import clsx from "clsx";
+import { useEffect } from "react";
+import { ProductProps } from "../Home/sections";
+import styles from "./ProductPage.module.css";
 
 export interface ProductPageProps {
   link: string;
 }
 
 export const ProductPage = ({ link }: ProductPageProps) => {
-  const [products] = useProducts((state) => [state.products]);
+  const [products, addItemToCart] = useProducts((state) => [
+    state.products,
+    state.addItemToCart,
+  ]);
   const filteredProduct = products.find(
     (product) => product.link.toLowerCase() === link.toLowerCase()
   );
@@ -19,6 +24,17 @@ export const ProductPage = ({ link }: ProductPageProps) => {
   if (!filteredProduct) {
     return <div>Продукт не найден</div>;
   }
+
+  const handleAddItemToCart = () => {
+    const newItem: ProductProps = {
+      title: filteredProduct.title,
+      price: filteredProduct.price,
+      image: filteredProduct.image,
+      link: filteredProduct.link,
+      description: filteredProduct?.description,
+    };
+    addItemToCart({ newItem });
+  };
 
   return (
     <section className={clsx(styles.section)}>
@@ -40,7 +56,7 @@ export const ProductPage = ({ link }: ProductPageProps) => {
           <div className={styles.content}>
             <h2 className={styles.title}>{filteredProduct.title}</h2>
             <p className={styles.text}>{filteredProduct.description}</p>
-            <Button onClick={() => null}>Додати в кошик</Button>
+            <Button onClick={handleAddItemToCart}>Додати в кошик</Button>
           </div>
         </div>
       </Container>

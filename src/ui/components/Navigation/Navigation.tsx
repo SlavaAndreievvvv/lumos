@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Routes } from "@/constants";
 import { useScrollToAnchor } from "@/utils/hooks";
 import { useBoolean, useOnClickOutside } from "usehooks-ts";
+import { usePathname } from "next/navigation";
 import styles from "./Navigation.module.css";
 
 const navLinks = [
@@ -16,7 +17,7 @@ const navLinks = [
   },
   {
     name: "Наша ідея",
-    link: `${Routes.ABOUT_US}`,
+    link: Routes.ABOUT_US,
   },
   {
     name: "Контакти",
@@ -27,7 +28,13 @@ const navLinks = [
 const NavigationBurger = () => {
   const isOpenBurgerMenu = useBoolean();
   const ref = useRef<HTMLDivElement | null>(null);
+
   useOnClickOutside(ref, () => isOpenBurgerMenu.setFalse());
+  const pathname = usePathname();
+
+  useEffect(() => {
+    isOpenBurgerMenu.setFalse();
+  }, [pathname]);
 
   return (
     <>
@@ -47,11 +54,9 @@ const NavigationBurger = () => {
         <Logo size={50} className={styles.burgerLogo} />
         <nav className={styles.burgerLinks}>
           {navLinks.map(({ name, link }) => (
-            <li key={name} onClick={() => isOpenBurgerMenu.setFalse()}>
-              <Link href={link} className={styles.burgerLink}>
-                {name}
-              </Link>
-            </li>
+            <Link key={name} href={link} className={styles.burgerLink}>
+              {name}
+            </Link>
           ))}
         </nav>
       </div>

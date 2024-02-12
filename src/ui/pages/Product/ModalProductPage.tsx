@@ -8,9 +8,13 @@ import { useProducts } from "@/store";
 import { useEffect, useRef } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { useRouter } from "next/navigation";
+import { ProductProps } from "../Home/sections";
 
 export const ModalProductPage = ({ link }: ProductPageProps) => {
-  const [products] = useProducts((state) => [state.products]);
+  const [products, addItemToCart] = useProducts((state) => [
+    state.products,
+    state.addItemToCart,
+  ]);
 
   useEffect(() => {
     document.body.classList.add("open-modal");
@@ -22,11 +26,7 @@ export const ModalProductPage = ({ link }: ProductPageProps) => {
   const ref = useRef(null);
   const router = useRouter();
 
-  const handleClickOutside = () => {
-    router.back();
-  };
-
-  useOnClickOutside(ref, handleClickOutside);
+  useOnClickOutside(ref, () => router.back());
 
   const filteredProduct = products.find(
     (product) => product.link.toLowerCase() === link.toLowerCase()
@@ -35,6 +35,17 @@ export const ModalProductPage = ({ link }: ProductPageProps) => {
   if (!filteredProduct) {
     return <div>Продукт не найден</div>;
   }
+
+  const handleAddItemToCart = () => {
+    const newItem: ProductProps = {
+      title: filteredProduct.title,
+      price: filteredProduct.price,
+      image: filteredProduct.image,
+      link: filteredProduct.link,
+      description: filteredProduct.description,
+    };
+    addItemToCart({ newItem });
+  };
 
   return (
     <div className={styles.modal}>
@@ -60,7 +71,7 @@ export const ModalProductPage = ({ link }: ProductPageProps) => {
           <p className={clsx(styles.text, styles.modalText)}>
             {filteredProduct.description}
           </p>
-          <Button onClick={() => null}>Додати в кошик</Button>
+          <Button onClick={handleAddItemToCart}>Додати в кошик</Button>
         </div>
       </div>
     </div>

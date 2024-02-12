@@ -26,7 +26,7 @@ const icons = [
 ];
 
 export interface ProductProps {
-  title: string;
+  title: string | null;
   price: string;
   image: string;
   link: string;
