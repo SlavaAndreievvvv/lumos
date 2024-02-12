@@ -28,11 +28,19 @@
     margin-inline: auto;
   }
 }
-.wrapper .card:nth-child(1) .bootleImage {
+.wrapper .cardWrapper:nth-child(1) .bootleImage {
   position: absolute;
   width: 88%;
   height: 144%;
   transform: translate(11%, -20%);
+}
+
+.cardWrapper {
+  max-width: 360px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .card {
@@ -43,7 +51,6 @@
   justify-content: flex-end;
   background-color: var(--COLOR_GREY_4);
   border-radius: 4px;
-  max-width: 360px;
   min-height: 340px;
   width: 100%;
   text-decoration: none;
@@ -53,27 +60,29 @@
   transition: all 0.3s ease-in;
 }
 
-.card:hover {
-  transform: scale(1.1);
-  -webkit-transition: all 0.7s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-  -ms-transform: scale(1.1, 1.1);
-  -webkit-transform: scale(1.1, 1.1);
-  transform: scale(1.1, 1.1);
-}
+@media (min-width: 1024px) {
+  .card:hover {
+    transform: scale(1.1);
+    -webkit-transition: all 0.7s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+  }
 
-.card:hover .bootleImage {
-  transform: scale(1.1);
-  -webkit-transition: all 0.7s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-  -ms-transform: scale(1.1, 1.1);
-  -webkit-transform: scale(1.1, 1.1);
-  transform: scale(1.1, 1.1);
-  transform: translateY(-10%);
+  .card:hover .bootleImage {
+    transform: scale(1.1);
+    -webkit-transition: all 0.7s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+    transform: translateY(-10%);
+  }
 }
 
 .bootleImage {

@@ -1,11 +1,12 @@
 "use client";
 
-import { Container } from "@/ui";
+import { Button, Container } from "@/ui";
 import Image from "next/image";
 import { useProducts } from "@/store";
 import styles from "./ProductPage.module.css";
+import clsx from "clsx";
 
-interface ProductPageProps {
+export interface ProductPageProps {
   link: string;
 }
 
@@ -20,15 +21,18 @@ export const ProductPage = ({ link }: ProductPageProps) => {
   }
 
   return (
-    <section className={styles.section}>
+    <section className={clsx(styles.section)}>
       <Container>
         <div className={styles.container}>
-          <div className={styles.imageBox}>
+          <div
+            className={clsx(styles.imageBox, {
+              [styles.imageBoxRed]: filteredProduct.title === "Полум’я вулкану",
+            })}
+          >
             <Image
               src={filteredProduct.image}
               alt={`${filteredProduct.title} image`}
-              width={300}
-              height={500}
+              fill
               unoptimized
               quality={100}
             />
@@ -36,6 +40,7 @@ export const ProductPage = ({ link }: ProductPageProps) => {
           <div className={styles.content}>
             <h2 className={styles.title}>{filteredProduct.title}</h2>
             <p className={styles.text}>{filteredProduct.description}</p>
+            <Button onClick={() => null}>Додати в кошик</Button>
           </div>
         </div>
       </Container>

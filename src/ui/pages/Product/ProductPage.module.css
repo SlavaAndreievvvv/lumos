@@ -1,0 +1,141 @@
+.section {
+  position: relative;
+  padding-top: calc(var(--NAVIGATION_HEIGHT));
+  background: var(--COLOR_GREY_1);
+  min-height: 100vh;
+}
+@media (min-width: 1024px) {
+  .section {
+    padding-top: calc(var(--NAVIGATION_HEIGHT) + 30px);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+.imageBox {
+  position: relative;
+  aspect-ratio: 3/4;
+  max-width: 400px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+@media (min-width: 1024px) {
+  .imageBox {
+    aspect-ratio: 3/4;
+    width: 100%;
+    max-width: 450px;
+  }
+}
+.imageBoxRed {
+  aspect-ratio: 2/3;
+  width: 100%;
+  max-width: 341px;
+  transform: translate(0, -45px);
+}
+@media (min-width: 1024px) {
+  .imageBoxRed {
+    aspect-ratio: 3/5;
+    width: 100%;
+    max-width: 400px;
+    transform: translate(92px, -75px);
+  }
+}
+
+.content {
+  flex: 1 1 720px;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--COLOR_WHITE);
+}
+@media (min-width: 1024px) {
+  .title {
+    font-size: 32px;
+    white-space: pre-line;
+  }
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--COLOR_WHITE);
+  line-height: 160%;
+}
+@media (min-width: 1024px) {
+  .text {
+    white-space: pre-line;
+  }
+}
+
+/* MODAL PRODUCT */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.modalContainer {
+  background-color: var(--COLOR_WHITE);
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  max-width: 90vw;
+  padding: 24px;
+  border-radius: 24px;
+  margin-top: 30vh;
+}
+@media (min-width: 1024px) {
+  .modalContainer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 24px 32px;
+    margin-top: 0;
+  }
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.modalImageBox {
+  max-width: 330px;
+}
+.modalImageBoxRed {
+  transform: translate(30px, -41px);
+  max-width: 310px;
+  aspect-ratio: 3/5;
+}
+
+.modalTitle,
+.modalText {
+  color: var(--COLOR_GREY_1);
+}

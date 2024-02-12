@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { HTMLProps } from "react";
-import { Container } from "@/ui";
+import { Button, Container } from "@/ui";
 import BackgroundImage from "@/images/logo.png";
 import Image from "next/image";
 import RoundImage from "@/images/circle.png";
@@ -45,18 +45,30 @@ const HomePageCard = ({
   link,
 }: HomePageCardProps) => {
   return (
-    <Link
-      href={`${Routes.PRODUCT}/${link}`}
-      className={clsx(styles.card, className)}
-    >
-      <div className={styles.bootleImage}>
-        <Image src={image} alt="blue bootle" fill unoptimized quality={100} />
-      </div>
-      <div className={styles.content}>
-        <h3 className={styles.name}>{title}</h3>
-        <p className={styles.price}>{price}</p>
-      </div>
-    </Link>
+    <div className={styles.cardWrapper}>
+      <Link
+        scroll={false}
+        href={`${Routes.PRODUCT}/${link}`}
+        className={clsx(styles.card, className)}
+      >
+        <div className={styles.bootleImage}>
+          <Image
+            src={image}
+            alt={`${title} image`}
+            fill
+            unoptimized
+            quality={100}
+          />
+        </div>
+        <div className={styles.content}>
+          <h3 className={styles.name}>{title}</h3>
+          <p className={styles.price}>{price}</p>
+        </div>
+      </Link>
+      <Button fluid onClick={() => null}>
+        Додати в кошик
+      </Button>
+    </div>
   );
 };
 

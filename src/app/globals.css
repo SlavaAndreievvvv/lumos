@@ -98,3 +98,7 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
+
+.open-modal {
+  overflow-y: hidden;
+}
