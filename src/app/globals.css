@@ -99,6 +99,11 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
+main {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 .open-modal {
   overflow-y: hidden;
 }

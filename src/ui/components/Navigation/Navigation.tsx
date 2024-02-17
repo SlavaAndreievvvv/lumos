@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { HTMLAttributes, useEffect, useRef } from "react";
-import { Container, Icon, Logo } from "@/ui/components";
+import { Cart, Container, Icon, Logo } from "@/ui/components";
 import Link from "next/link";
 import { Routes } from "@/constants";
 import { useScrollToAnchor } from "@/utils/hooks";
@@ -13,7 +13,7 @@ import styles from "./Navigation.module.css";
 const navLinks = [
   {
     name: "Замовити",
-    link: `${Routes.HOME}#order`,
+    link: Routes.HOME,
   },
   {
     name: "Наша ідея",
@@ -82,12 +82,7 @@ export const Navigation = ({ className }: NavigationProps) => {
               </Link>
             ))}
           </nav>
-          <Icon
-            name="basket"
-            size={32}
-            color="white"
-            className={styles.basket}
-          />
+          <Cart />
         </div>
       </Container>
     </header>

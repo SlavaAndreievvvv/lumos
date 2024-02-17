@@ -52,13 +52,6 @@
   color: var(--COLOR_WHITE);
 }
 
-.basket {
-  transition: fill 0.3s ease;
-}
-.basket:hover {
-  fill: var(--COLOR_YELLOW);
-}
-
 /* BURGER */
 
 .burgerMenu {
