@@ -10,12 +10,15 @@ type useProductsProps = {
   addItemToCart: (params: { newItem: ProductProps }) => void;
   removeItemFromCart: (params: any) => void;
   emptyCart: (params: any) => void;
+  getItemCount: (itemName: string | null) => void;
+  itemCount: number;
 };
 
 export const useProducts = create<useProductsProps>()((set) => ({
   products: products,
   product: {},
   cart: [],
+  itemCount: 0,
   setProduct: (params: any) => {
     const { newProduct } = params;
     set((state) => {
@@ -40,6 +43,14 @@ export const useProducts = create<useProductsProps>()((set) => ({
   emptyCart: () => {
     set((state) => {
       return { ...state, cart: [] };
+    });
+  },
+  getItemCount: (itemName: string | null) => {
+    set((state) => {
+      const currentItemLength = state.cart.filter(
+        (item) => item.title === itemName
+      ).length;
+      return { ...state, itemCount: currentItemLength };
     });
   },
 }));

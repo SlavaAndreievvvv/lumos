@@ -46,7 +46,7 @@
 
 .cartAside {
   transition: all 0.3s ease-in-out;
-  width: 430px;
+  width: 320px;
   max-width: 90vw;
   position: absolute;
   top: 96px;
@@ -57,4 +57,9 @@
   z-index: 100;
   border-radius: 0 0 0 24px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+@media (width > 768px) {
+  .cartAside {
+    width: 420px;
+  }
 }

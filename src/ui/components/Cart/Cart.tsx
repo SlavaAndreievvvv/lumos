@@ -6,6 +6,7 @@ import { useProducts } from "@/store";
 import { useBoolean, useOnClickOutside } from "usehooks-ts";
 import styles from "./Cart.module.css";
 import { useRef } from "react";
+import { CartItem } from "./components/CartItem";
 
 export interface CartProps {
   className?: string;
@@ -16,7 +17,25 @@ export const Cart = ({ className }: CartProps) => {
   const isOpenCartAside = useBoolean();
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useOnClickOutside(ref, () => isOpenCartAside.setFalse());
+  useOnClickOutside(ref, () => {
+    isOpenCartAside.setFalse();
+  });
+
+  const uniqCart = Array.from(new Set(cart.map((item) => item.title)));
+
+  const getItemCount = (itemName: string | null): number => {
+    return cart.filter((item) => item.title === itemName).length;
+  };
+
+  const totalPrice = () => {
+    const total = cart.reduce((acc, item) => {
+      const priceNumber = parseFloat(item.price.replace(/[^\d.]/g, ""));
+
+      return acc + (isNaN(priceNumber) ? 0 : priceNumber);
+    }, 0);
+
+    return total;
+  };
 
   return (
     <div className={clsx(styles.cart, className)}>
@@ -26,7 +45,7 @@ export const Cart = ({ className }: CartProps) => {
         onClick={() => isOpenCartAside.setTrue()}
       >
         <Icon name="basket" size={32} color="white" />
-        <span>{cart.length}</span>
+        {uniqCart.length >= 1 && <span>{uniqCart.length}</span>}
       </button>
       <div
         ref={ref}
@@ -34,9 +53,20 @@ export const Cart = ({ className }: CartProps) => {
           [styles.isOpenCartAside]: isOpenCartAside.value,
         })}
       >
-        {cart.map((item) => (
-          <li key={item.title}>{item.title}</li>
-        ))}
+        {uniqCart.length >= 1 ? (
+          <ul>
+            {uniqCart.map((item) => (
+              <CartItem
+                key={item}
+                item={cart.find((cartItem) => cartItem.title === item)}
+                count={getItemCount(item)}
+              />
+            ))}
+            Загальна сумма: {totalPrice()}
+          </ul>
+        ) : (
+          <p>The cart is empty</p>
+        )}
       </div>
     </div>
   );

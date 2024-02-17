@@ -33,7 +33,7 @@ export const ModalProductPage = ({ link }: ProductPageProps) => {
   );
 
   if (!filteredProduct) {
-    return <div>Продукт не найден</div>;
+    return <div style={{ padding: "200px 0 0 0 " }}>Товар не знайдено </div>;
   }
 
   const handleAddItemToCart = () => {
@@ -45,6 +45,7 @@ export const ModalProductPage = ({ link }: ProductPageProps) => {
       description: filteredProduct.description,
     };
     addItemToCart({ newItem });
+    router.back();
   };
 
   return (

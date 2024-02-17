@@ -6,9 +6,10 @@ import { Button, Container } from "@/ui";
 import BackgroundImage from "@/images/logo.png";
 import Image from "next/image";
 import RoundImage from "@/images/circle.png";
-import styles from "./HomePageCards.module.css";
 import Link from "next/link";
 import { Routes } from "@/constants";
+import { useProducts } from "@/store";
+import styles from "./HomePageCards.module.css";
 
 const icons = [
   {
@@ -44,6 +45,17 @@ const HomePageCard = ({
   image,
   link,
 }: HomePageCardProps) => {
+  const [addItemToCart] = useProducts((state) => [state.addItemToCart]);
+
+  const handleAddItemToCart = () => {
+    const newItem: ProductProps = {
+      title,
+      price,
+      image,
+      link,
+    };
+    addItemToCart({ newItem });
+  };
   return (
     <div className={styles.cardWrapper}>
       <Link
@@ -65,7 +77,7 @@ const HomePageCard = ({
           <p className={styles.price}>{price}</p>
         </div>
       </Link>
-      <Button fluid onClick={() => null}>
+      <Button fluid onClick={handleAddItemToCart}>
         Додати в кошик
       </Button>
     </div>
