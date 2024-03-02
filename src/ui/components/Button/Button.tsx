@@ -13,7 +13,7 @@ interface ButtonDefaultProps {
 }
 
 interface ButtonButtonProps {
-  onClick: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   link?: undefined;
 }
 

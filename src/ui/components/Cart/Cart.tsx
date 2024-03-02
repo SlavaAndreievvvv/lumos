@@ -1,12 +1,14 @@
 "use client";
 
 import clsx from "clsx";
-import { Icon } from "@/ui/components";
+import { Button, Icon } from "@/ui/components";
 import { useProducts } from "@/store";
 import { useBoolean, useOnClickOutside } from "usehooks-ts";
 import styles from "./Cart.module.css";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { CartItem } from "./components/CartItem";
+import { Routes } from "@/constants";
+import { usePathname } from "next/navigation";
 
 export interface CartProps {
   className?: string;
@@ -16,10 +18,15 @@ export const Cart = ({ className }: CartProps) => {
   const [cart] = useProducts((state) => [state.cart]);
   const isOpenCartAside = useBoolean();
   const ref = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
 
   useOnClickOutside(ref, () => {
     isOpenCartAside.setFalse();
   });
+
+  useEffect(() => {
+    isOpenCartAside.setFalse();
+  }, [pathname]);
 
   const uniqCart = Array.from(new Set(cart.map((item) => item.title)));
 
@@ -54,16 +61,19 @@ export const Cart = ({ className }: CartProps) => {
         })}
       >
         {uniqCart.length >= 1 ? (
-          <ul>
-            {uniqCart.map((item) => (
-              <CartItem
-                key={item}
-                item={cart.find((cartItem) => cartItem.title === item)}
-                count={getItemCount(item)}
-              />
-            ))}
-            Загальна сумма: {totalPrice()}
-          </ul>
+          <>
+            <ul>
+              {uniqCart.map((item) => (
+                <CartItem
+                  key={item}
+                  item={cart.find((cartItem) => cartItem.title === item)}
+                  count={getItemCount(item)}
+                />
+              ))}
+              Загальна сумма: {totalPrice()}
+            </ul>
+            <Button link={Routes.ORDER}>Замовити</Button>
+          </>
         ) : (
           <p>The cart is empty</p>
         )}
