@@ -39,19 +39,19 @@ export const OrderPage = ({ className }: OrderPageProps) => {
 
       return { item, count };
     });
-    console.log(
-      JSON.stringify(
-        {
-          name,
-          email,
-          phone,
-          price: totalPrice(),
-          order: orderDetails,
-        },
-        null,
-        2
-      )
-    );
+
+    const data = {
+      name,
+      email,
+      phone,
+      price: totalPrice(),
+      order: JSON.stringify(orderDetails),
+    };
+
+    fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
   };
 
   return (
