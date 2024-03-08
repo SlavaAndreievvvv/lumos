@@ -5,12 +5,17 @@ import { useProducts } from "@/store";
 import { Button } from "@/ui";
 import { CartItem } from "@/ui/components/Cart/components/CartItem";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./OrderPage.module.css";
 
 export interface OrderPageProps extends React.ComponentProps<"div"> {}
 
 export const OrderPage = ({ className }: OrderPageProps) => {
-  const [cart] = useProducts((state) => [state.cart]);
+  const router = useRouter();
+  const [cart, emptyCart] = useProducts((state) => [
+    state.cart,
+    state.emptyCart,
+  ]);
   const uniqCart = Array.from(new Set(cart.map((item) => item.title)));
 
   const getItemCount = (itemName: string | null): number => {
@@ -31,7 +36,7 @@ export const OrderPage = ({ className }: OrderPageProps) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  const handleOrder = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOrder = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const orderDetails = uniqCart.map((item) => {
       const cartItem = cart.find((cartItem) => cartItem.title === item);
@@ -48,10 +53,27 @@ export const OrderPage = ({ className }: OrderPageProps) => {
       order: JSON.stringify(orderDetails),
     };
 
-    fetch("/api/contact", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        console.error(
+          "Failed to submit order:",
+          response.status,
+          response.statusText
+        );
+        router.push("/order/error");
+      } else {
+        router.push("/success");
+        emptyCart([]);
+      }
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      router.push("/order/error");
+    }
   };
 
   return (

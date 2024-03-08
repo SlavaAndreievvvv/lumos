@@ -25,7 +25,5 @@ export async function POST(req: Request) {
 
   await mail.send(data);
 
-  console.log("data", data);
-
   return NextResponse.json({ body });
 }

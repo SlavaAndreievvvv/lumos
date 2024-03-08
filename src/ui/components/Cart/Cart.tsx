@@ -75,7 +75,7 @@ export const Cart = ({ className }: CartProps) => {
             <Button link={Routes.ORDER}>Замовити</Button>
           </>
         ) : (
-          <p>The cart is empty</p>
+          <p>Корзина порожня</p>
         )}
       </div>
     </div>
