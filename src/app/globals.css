@@ -54,6 +54,8 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 h1,
@@ -100,6 +102,7 @@ textarea:not([rows]) {
 }
 
 main {
+  flex: 1;
   width: 100vw;
   overflow-x: hidden;
 }

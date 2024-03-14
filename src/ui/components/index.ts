@@ -7,3 +7,4 @@ export * from "./Navigation";
 export * from "./Button";
 export * from "./Modal";
 export * from "./Cart";
+export * from "./Input";

@@ -2,9 +2,9 @@
 
 import clsx from "clsx";
 import { useProducts } from "@/store";
-import { Button } from "@/ui";
+import { Button, Container, Input } from "@/ui";
 import { CartItem } from "@/ui/components/Cart/components/CartItem";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./OrderPage.module.css";
 
@@ -36,7 +36,7 @@ export const OrderPage = ({ className }: OrderPageProps) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  const handleOrder = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOrder = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const orderDetails = uniqCart.map((item) => {
       const cartItem = cart.find((cartItem) => cartItem.title === item);
@@ -78,48 +78,45 @@ export const OrderPage = ({ className }: OrderPageProps) => {
 
   return (
     <section className={clsx(styles.section, className)}>
-      <h2>Ваше замовлення</h2>
-      <ul>
-        {uniqCart.map((item) => (
-          <CartItem
-            key={item}
-            item={cart.find((cartItem) => cartItem.title === item)}
-            count={getItemCount(item)}
-          />
-        ))}
-        Загальна сумма: {totalPrice()}
-      </ul>
-      <form>
-        <label>
-          <input
-            type="text"
-            placeholder="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label>
-          <input
-            type="email"
-            placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label>
-          <input
-            type="tel"
-            placeholder="number"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </label>
-        <Button
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleOrder(e)}
-        >
-          Оформити замовлення
-        </Button>
-      </form>
+      <Container>
+        <div className={styles.wrapper}>
+          <h2 className={styles.title}>Ваше замовлення</h2>
+          <div className={styles.list}>
+            {uniqCart.map((item) => (
+              <CartItem
+                key={item}
+                item={cart.find((cartItem) => cartItem.title === item)}
+                count={getItemCount(item)}
+              />
+            ))}
+            <span className={styles.price}>Загальна сумма: {totalPrice()}</span>
+          </div>
+          <form className={styles.form} onSubmit={(e) => handleOrder(e)}>
+            <Input
+              required
+              type="text"
+              placeholder="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+
+            <Input
+              type="email"
+              placeholder="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              required
+              type="tel"
+              placeholder="number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            <Button fluid>Оформити замовлення</Button>
+          </form>
+        </div>
+      </Container>
     </section>
   );
 };

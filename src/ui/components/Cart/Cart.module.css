@@ -63,3 +63,25 @@
     width: 420px;
   }
 }
+
+.cartBottom {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 32px;
+}
+@media (min-width: 768px) {
+  .cartBottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.cartTotal {
+  color: var(--COLOR_WHITE);
+  font-size: 20px;
+  white-space: nowrap;
+}

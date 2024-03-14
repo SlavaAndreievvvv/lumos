@@ -28,6 +28,7 @@ export const CartItem = ({ item, count }: CartItemProps) => {
       addItemToCart({ newItem });
     }
   };
+
   const handleRemoveItemToCart = () => {
     if (item) {
       const itemIndex = cart.findIndex(
@@ -38,27 +39,34 @@ export const CartItem = ({ item, count }: CartItemProps) => {
       }
     }
   };
+
   return (
     item && (
       <li className={styles.item}>
-        <Image
-          src={item.image}
-          width={70}
-          height={80}
-          alt={`${item.title} image`}
-          className={styles.image}
-        />
-        <div>
-          <p>{item.title}</p>
-          <p>Кількість: {count}</p>
+        <div className={styles.itemHead}>
+          <Image
+            src={item.image}
+            width={80}
+            height={100}
+            alt={`${item.title} image`}
+            className={styles.image}
+          />
+          <p className={styles.itemTitle}>{item.title}</p>
         </div>
-        <button className={styles.button} onClick={handleRemoveItemToCart}>
-          -
-        </button>
-        <button className={styles.button} onClick={handleAddItemToCart}>
-          +
-        </button>
-        <p className={styles.price}>{item.price}</p>
+        <div className={styles.itemCountWrapper}>
+          <button
+            className={styles.itemButton}
+            onClick={handleRemoveItemToCart}
+          >
+            -
+          </button>
+
+          <span className={styles.itemCount}>{count}</span>
+
+          <button className={styles.itemButton} onClick={handleAddItemToCart}>
+            +
+          </button>
+        </div>
       </li>
     )
   );

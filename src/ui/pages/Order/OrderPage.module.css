@@ -1,3 +1,48 @@
 .section {
-  padding: 200px 40px;
+  background: var(--COLOR_GREY_1);
+  padding-top: calc(var(--NAVIGATION_HEIGHT) + 140px);
+  padding-bottom: 40px;
+  height: 100%;
+  min-height: 100vh;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: calc(var(--NAVIGATION_HEIGHT) + 120px);
+    padding-bottom: 80px;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--COLOR_WHITE);
+  margin-bottom: 40px;
+}
+@media (min-width: 1024px) {
+  .title {
+    font-size: 32px;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--COLOR_WHITE);
+  line-height: 160%;
+  margin-top: 32px;
+  margin-left: auto;
 }

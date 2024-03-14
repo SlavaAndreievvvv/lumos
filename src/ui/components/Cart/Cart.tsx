@@ -70,9 +70,15 @@ export const Cart = ({ className }: CartProps) => {
                   count={getItemCount(item)}
                 />
               ))}
-              Загальна сумма: {totalPrice()}
             </ul>
-            <Button link={Routes.ORDER}>Замовити</Button>
+            <div className={styles.cartBottom}>
+              <Button fluid link={Routes.ORDER}>
+                Замовити
+              </Button>
+              <div className={styles.cartTotal}>
+                Загальна сумма: {totalPrice()}
+              </div>
+            </div>
           </>
         ) : (
           <p>Корзина порожня</p>
