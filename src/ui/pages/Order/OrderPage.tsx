@@ -33,7 +33,6 @@ export const OrderPage = ({ className }: OrderPageProps) => {
   };
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
   const handleOrder = async (e: FormEvent<HTMLFormElement>) => {
@@ -47,16 +46,15 @@ export const OrderPage = ({ className }: OrderPageProps) => {
 
     const data = {
       name,
-      email,
       phone,
       price: totalPrice(),
-      order: JSON.stringify(orderDetails),
+      order: JSON.stringify(orderDetails, null, 2),
     };
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify(data, null, 2),
       });
 
       if (!response.ok) {
@@ -98,13 +96,6 @@ export const OrderPage = ({ className }: OrderPageProps) => {
               placeholder="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-            />
-
-            <Input
-              type="email"
-              placeholder="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
             />
             <Input
               required

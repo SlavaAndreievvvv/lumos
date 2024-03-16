@@ -8,7 +8,6 @@ export async function POST(req: Request) {
 
   const message = `
   Name: ${body.name}\r\n
-  Email: ${body.email}\r\n
   Phone: ${body.phone}\r\n
   Price: ${body.price}\r\n
   Order: ${body.order}\r\n
@@ -16,7 +15,7 @@ export async function POST(req: Request) {
 `;
 
   const data = {
-    to: "andreiev.viacheslav@gmail.com",
+    to: "andreiev.viacheslav@gmail.com", // poddubnyi15@gmail.com
     from: "andreiev.viacheslav@gmail.com",
     subject: `New message from ${body.name}`,
     text: message,
