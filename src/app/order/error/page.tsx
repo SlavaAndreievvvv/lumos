@@ -1,12 +1,6 @@
 "use client";
-import Link from "next/link";
+import { ErrorPage } from "@/ui/pages";
 
 export default function NotFound() {
-  return (
-    <div style={{ paddingTop: "100px" }}>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
-    </div>
-  );
+  return <ErrorPage title={"Упс!т Щось пішло не так:("} />;
 }

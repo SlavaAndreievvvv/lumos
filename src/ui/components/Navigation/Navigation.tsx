@@ -12,8 +12,8 @@ import styles from "./Navigation.module.css";
 
 const navLinks = [
   {
-    name: "Замовити",
-    link: Routes.HOME,
+    name: "Головна",
+    link: `${Routes.HOME}`,
   },
   {
     name: "Наша ідея",

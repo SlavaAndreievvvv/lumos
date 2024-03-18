@@ -1,0 +1,32 @@
+.footer {
+  flex: 0;
+  height: 100%;
+  padding: 24px 0;
+  background: var(--COLOR_GREY_1);
+  border-top: 1px solid var(--COLOR_GREY_2);
+}
+
+.socialWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.link {
+  outline: none;
+  border: none;
+  background-color: none;
+}
+.link:hover .icon {
+  fill: var(--COLOR_YELLOW);
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  fill: var(--COLOR_BLACK);
+  transition: fill 0.3s ease;
+}

@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { useProducts } from "@/store";
 import { Button, Container, Input } from "@/ui";
 import { CartItem } from "@/ui/components/Cart/components/CartItem";
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./OrderPage.module.css";
 
@@ -33,10 +33,38 @@ export const OrderPage = ({ className }: OrderPageProps) => {
   };
 
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("+380");
+  const [nameError, setNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+
+  const isValidatePhone = (phoneNumber: string) => {
+    const phonePattern = /^(\+?3?8?0)(\d{9})$/;
+    return phonePattern.test(phoneNumber);
+  };
+
+  const handleSetPhone = (e: ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value);
+    setPhoneError("");
+  };
+
+  const handleSetName = (e: ChangeEvent<HTMLInputElement>) => {
+    const trimmedValue = e.target.value.trim();
+    setName(trimmedValue);
+    setNameError("");
+  };
 
   const handleOrder = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (cart.length == 0) {
+      alert("Спочатку оберіть товар");
+    }
+
+    if (!isValidatePhone(phone)) {
+      setPhoneError("Введіть коректний номер телефону");
+      return;
+    }
+
     const orderDetails = uniqCart.map((item) => {
       const cartItem = cart.find((cartItem) => cartItem.title === item);
       const count = getItemCount(item);
@@ -93,18 +121,21 @@ export const OrderPage = ({ className }: OrderPageProps) => {
             <Input
               required
               type="text"
-              placeholder="name"
+              placeholder="ім'я"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={handleSetName}
             />
             <Input
               required
               type="tel"
-              placeholder="number"
+              placeholder="+380"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handleSetPhone}
+              errorMessage={phoneError}
             />
-            <Button fluid>Оформити замовлення</Button>
+            <Button fluid className={styles.button}>
+              Оформити замовлення
+            </Button>
           </form>
         </div>
       </Container>

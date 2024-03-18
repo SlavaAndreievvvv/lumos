@@ -1,3 +1,11 @@
+import { SuccessPage } from "@/ui/pages";
+
 export default function Success() {
-  return <section style={{ paddingTop: "100px" }}>Success</section>;
+  return (
+    <SuccessPage
+      title={
+        "Вітаю!\n Замовлення прийнято,\n з вами з'яжиться наш адміністратор!"
+      }
+    />
+  );
 }

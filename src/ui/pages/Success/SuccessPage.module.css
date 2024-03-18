@@ -1,0 +1,25 @@
+.section {
+  background: var(--COLOR_GREY_1);
+  padding-top: calc(var(--NAVIGATION_HEIGHT) + 140px);
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 140%;
+  text-transform: uppercase;
+  white-space: pre-line;
+  text-align: center;
+  color: var(--COLOR_WHITE);
+}
+@media (min-width: 1024px) {
+  .title {
+    font-size: 28px;
+  }
+}
+
+.button {
+  margin-top: 40px;
+  margin-inline: auto;
+}

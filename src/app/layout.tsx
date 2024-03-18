@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PT_Sans } from "next/font/google";
-import { Navigation } from "@/ui/components";
+import { Footer, Navigation } from "@/ui/components";
 import "./globals.css";
 
 const cinzel = PT_Sans({ weight: ["400", "700"], subsets: ["cyrillic"] });
@@ -51,6 +51,7 @@ export default function RootLayout({
           <>{children}</>
           <>{modal}</>
         </main>
+        <Footer />
       </body>
     </html>
   );

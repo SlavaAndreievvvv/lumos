@@ -1,8 +1,14 @@
+.container {
+  position: relative;
+  height: 56px;
+}
+
 .input {
+  position: absolute;
+  inset: 0;
   outline: none;
   background-color: var(--COLOR_WHITE);
   border: 2px solid var(--COLOR_GREY_2);
-  height: 56px;
   padding: 0 16px;
   border-radius: 4px;
   width: 100%;
@@ -21,4 +27,15 @@
 
 .input:focus {
   border: 2px solid var(--COLOR_GREY_1);
+}
+
+.message {
+  position: absolute;
+  bottom: -24px;
+  left: 0;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--COLOR_RED);
+  line-height: 160%;
 }
