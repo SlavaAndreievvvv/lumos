@@ -63,7 +63,7 @@ export const Cart = ({ className }: CartProps) => {
                 Замовити
               </Button>
               <div className={styles.cartTotal}>
-                Загальна сумма: {totalPrice(cart)}
+                Загальна сума: {totalPrice(cart)}
               </div>
             </div>
           </>

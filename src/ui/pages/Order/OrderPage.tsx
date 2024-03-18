@@ -104,7 +104,7 @@ export const OrderPage = ({ className }: OrderPageProps) => {
               />
             ))}
             <span className={styles.price}>
-              Загальна сумма: {totalPrice(cart)}
+              Загальна сума: {totalPrice(cart)}
             </span>
           </div>
           <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>

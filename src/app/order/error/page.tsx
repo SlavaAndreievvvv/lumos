@@ -2,5 +2,5 @@
 import { ErrorPage } from "@/ui/pages";
 
 export default function NotFound() {
-  return <ErrorPage title={"Упс!т Щось пішло не так:("} />;
+  return <ErrorPage title={"Упс!\n Щось пішло не так:("} />;
 }
