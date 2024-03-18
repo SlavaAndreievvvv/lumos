@@ -6,6 +6,7 @@ import { Button, Container, Input } from "@/ui";
 import { CartItem } from "@/ui/components/Cart/components/CartItem";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Routes } from "@/constants";
 import styles from "./OrderPage.module.css";
 
 export interface OrderPageProps extends React.ComponentProps<"div"> {}
@@ -53,11 +54,13 @@ export const OrderPage = ({ className }: OrderPageProps) => {
     setNameError("");
   };
 
-  const handleOrder = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (cart.length == 0) {
       alert("Спочатку оберіть товар");
+      router.push(Routes.HOME);
+      return;
     }
 
     if (!isValidatePhone(phone)) {
@@ -117,7 +120,7 @@ export const OrderPage = ({ className }: OrderPageProps) => {
             ))}
             <span className={styles.price}>Загальна сумма: {totalPrice()}</span>
           </div>
-          <form className={styles.form} onSubmit={(e) => handleOrder(e)}>
+          <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
             <Input
               required
               type="text"
