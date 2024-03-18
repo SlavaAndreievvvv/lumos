@@ -3,4 +3,5 @@ export enum Routes {
   ABOUT_US = "/about-us",
   PRODUCT = "/product",
   ORDER = "/order",
+  API_CONTACT = "/api/contact",
 }

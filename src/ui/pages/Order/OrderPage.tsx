@@ -35,7 +35,6 @@ export const OrderPage = ({ className }: OrderPageProps) => {
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("+380");
-  const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
 
   const isValidatePhone = (phoneNumber: string) => {
@@ -51,7 +50,6 @@ export const OrderPage = ({ className }: OrderPageProps) => {
   const handleSetName = (e: ChangeEvent<HTMLInputElement>) => {
     const trimmedValue = e.target.value.trim();
     setName(trimmedValue);
-    setNameError("");
   };
 
   const handleSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
@@ -83,7 +81,7 @@ export const OrderPage = ({ className }: OrderPageProps) => {
     };
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(Routes.API_CONTACT, {
         method: "POST",
         body: JSON.stringify(data, null, 2),
       });
