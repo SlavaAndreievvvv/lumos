@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { useProducts } from "@/store";
 import { Button, Container, Input } from "@/ui";
 import { CartItem } from "@/ui/components/Cart/components/CartItem";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Routes } from "@/constants";
 import styles from "./OrderPage.module.css";
