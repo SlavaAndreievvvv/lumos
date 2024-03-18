@@ -51,7 +51,7 @@ export const Cart = ({ className }: CartProps) => {
         className={styles.icon}
         onClick={() => isOpenCartAside.setTrue()}
       >
-        <Icon name="basket" size={32} color="white" />
+        <Icon name="basket" size={32} />
         {uniqCart.length >= 1 && <span>{uniqCart.length}</span>}
       </button>
       <div

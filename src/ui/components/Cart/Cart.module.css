@@ -11,6 +11,7 @@
 
 .icon svg {
   transition: fill 0.3s ease;
+  fill: var(--COLOR_WHITE);
 }
 .icon:hover svg {
   fill: var(--COLOR_YELLOW);
