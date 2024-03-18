@@ -43,7 +43,7 @@ const NavigationBurger = () => {
         aria-label="burger"
         className={styles.burgerButton}
       >
-        <Icon name="burger" size={32} color="white" />
+        <Icon name="burger" size={32} />
       </button>
       <div
         ref={ref}
