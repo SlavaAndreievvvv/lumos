@@ -9,6 +9,7 @@ import { useEffect, useRef } from "react";
 import { CartItem } from "./components/CartItem";
 import { Routes } from "@/constants";
 import { usePathname } from "next/navigation";
+import { getCartLength, getUniqueCartItems, totalPrice } from "@/utils/helpers";
 
 export interface CartProps {
   className?: string;
@@ -28,21 +29,7 @@ export const Cart = ({ className }: CartProps) => {
     isOpenCartAside.setFalse();
   }, [pathname]);
 
-  const uniqCart = Array.from(new Set(cart.map((item) => item.title)));
-
-  const getItemCount = (itemName: string | null): number => {
-    return cart.filter((item) => item.title === itemName).length;
-  };
-
-  const totalPrice = () => {
-    const total = cart.reduce((acc, item) => {
-      const priceNumber = parseFloat(item.price.replace(/[^\d.]/g, ""));
-
-      return acc + (isNaN(priceNumber) ? 0 : priceNumber);
-    }, 0);
-
-    return total;
-  };
+  const uniqCart = getUniqueCartItems(cart);
 
   return (
     <div className={clsx(styles.cart, className)}>
@@ -67,7 +54,7 @@ export const Cart = ({ className }: CartProps) => {
                 <CartItem
                   key={item}
                   item={cart.find((cartItem) => cartItem.title === item)}
-                  count={getItemCount(item)}
+                  count={getCartLength(cart, item)}
                 />
               ))}
             </ul>
@@ -76,7 +63,7 @@ export const Cart = ({ className }: CartProps) => {
                 Замовити
               </Button>
               <div className={styles.cartTotal}>
-                Загальна сумма: {totalPrice()}
+                Загальна сумма: {totalPrice(cart)}
               </div>
             </div>
           </>

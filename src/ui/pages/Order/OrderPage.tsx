@@ -7,40 +7,28 @@ import { CartItem } from "@/ui/components/Cart/components/CartItem";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Routes } from "@/constants";
+import {
+  getCartLength,
+  getUniqueCartItems,
+  isValidatePhone,
+  totalPrice,
+} from "@/utils/helpers";
 import styles from "./OrderPage.module.css";
 
 export interface OrderPageProps extends React.ComponentProps<"div"> {}
 
 export const OrderPage = ({ className }: OrderPageProps) => {
-  const router = useRouter();
   const [cart, emptyCart] = useProducts((state) => [
     state.cart,
     state.emptyCart,
   ]);
-  const uniqCart = Array.from(new Set(cart.map((item) => item.title)));
 
-  const getItemCount = (itemName: string | null): number => {
-    return cart.filter((item) => item.title === itemName).length;
-  };
-
-  const totalPrice = () => {
-    const total = cart.reduce((acc, item) => {
-      const priceNumber = parseFloat(item.price.replace(/[^\d.]/g, ""));
-
-      return acc + (isNaN(priceNumber) ? 0 : priceNumber);
-    }, 0);
-
-    return total;
-  };
-
+  const router = useRouter();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("+380");
   const [phoneError, setPhoneError] = useState("");
 
-  const isValidatePhone = (phoneNumber: string) => {
-    const phonePattern = /^(\+?3?8?0)(\d{9})$/;
-    return phonePattern.test(phoneNumber);
-  };
+  const uniqCart = getUniqueCartItems(cart);
 
   const handleSetPhone = (e: ChangeEvent<HTMLInputElement>) => {
     setPhone(e.target.value);
@@ -67,8 +55,7 @@ export const OrderPage = ({ className }: OrderPageProps) => {
     }
 
     const orderDetails = uniqCart.map((item) => {
-      const cartItem = cart.find((cartItem) => cartItem.title === item);
-      const count = getItemCount(item);
+      const count = getCartLength(cart, item);
 
       return { item, count };
     });
@@ -76,7 +63,7 @@ export const OrderPage = ({ className }: OrderPageProps) => {
     const data = {
       name,
       phone,
-      price: totalPrice(),
+      price: totalPrice(cart),
       order: JSON.stringify(orderDetails, null, 2),
     };
 
@@ -113,10 +100,12 @@ export const OrderPage = ({ className }: OrderPageProps) => {
               <CartItem
                 key={item}
                 item={cart.find((cartItem) => cartItem.title === item)}
-                count={getItemCount(item)}
+                count={getCartLength(cart, item)}
               />
             ))}
-            <span className={styles.price}>Загальна сумма: {totalPrice()}</span>
+            <span className={styles.price}>
+              Загальна сумма: {totalPrice(cart)}
+            </span>
           </div>
           <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
             <Input
