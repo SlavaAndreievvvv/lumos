@@ -1,6 +1,6 @@
 .section {
   background: var(--COLOR_GREY_1);
-  padding-top: calc(var(--NAVIGATION_HEIGHT) + 140px);
+  padding-top: calc(var(--NAVIGATION_HEIGHT) + 60px);
   padding-bottom: 40px;
   height: 100%;
   min-height: 100vh;
